@@ -10,9 +10,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
-	declarations: [UserListComponent, HeaderComponent],
+	declarations: [UserListComponent, HeaderComponent, UserDetailsComponent],
 	imports: [
 		CommonModule,
 		ReactiveFormsModule,

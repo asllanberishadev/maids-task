@@ -1,0 +1,14 @@
+@if (user) {
+<div>
+    <span (click)="goToAllUsers()"><- Back to All Users</span>
+    <br><br>
+    <img [src]="user.avatar" [alt]="user.first_name" width="100" class="shadow-4" />
+    <br>
+    <span>First Name: {{user.first_name}}</span> <br>
+    <span>Last Name: {{user.last_name}}</span><br>
+    <span>Email: {{user.email}}</span>
+
+</div>
+} @else {
+<span>No user found</span>
+}

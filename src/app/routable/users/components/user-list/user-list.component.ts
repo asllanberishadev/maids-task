@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User, UserAPIResponse } from '../../../../models/user.model';
-import { UsersStoreService } from '../../../../services/users.store.service';
+import { UsersStoreService } from '../../services/users.store.service';
 import { Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-user-list',
@@ -14,7 +15,7 @@ export class UserListComponent implements OnInit {
 	users: User[];
 	currentPage: number;
 
-	constructor(private usersStoreService: UsersStoreService) {}
+	constructor(private usersStoreService: UsersStoreService, private router: Router) {}
 
 	ngOnInit(): void {
 		this.usersStoreService.getAllUsers();
@@ -44,6 +45,10 @@ export class UserListComponent implements OnInit {
 				: this.users.filter((user) => {
 						return user.id.toString().includes(searchText.toLowerCase());
 				  });
+	}
+
+	goToUserDetails(userId: string): void {
+		this.router.navigate(['/', userId])
 	}
 
 	ngOnDestroy(): void {

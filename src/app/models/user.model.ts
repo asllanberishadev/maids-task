@@ -10,6 +10,13 @@ export interface UserAPIResponse {
 	};
 }
 
+export interface UserResponse {
+	data: User;
+	support: {
+		url: string;
+		text: string;
+	};
+}
 export interface User {
 	id: number;
 	email: string;

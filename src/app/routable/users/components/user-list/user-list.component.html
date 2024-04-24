@@ -16,7 +16,7 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user>
-            <tr>
+            <tr (click)="goToUserDetails(user.id)" style="cursor: pointer;">
                 <td><img [src]="user.avatar" [alt]="user.first_name" width="100" class="shadow-4" /></td>
                 <td>{{user.first_name}}</td>
                 <td>{{user.last_name}}</td>
@@ -25,7 +25,7 @@
         </ng-template>
     </p-table>
     } @else {
-        <span>No user found</span>
+    <span>No user found</span>
     }
     <div class="pagination">
         <span style="margin-right: 50px;">{{ userAPIResponse?.total }} Total Users</span>

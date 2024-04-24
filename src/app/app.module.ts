@@ -11,10 +11,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { effects, reducers } from './store';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { LoadingInterceptor } from './interceptors/spinner.interceptor';
 
 @NgModule({
-	declarations: [AppComponent],
+	declarations: [AppComponent, LoaderComponent],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
@@ -26,7 +28,13 @@ import { HttpClientModule } from '@angular/common/http';
 		EffectsModule.forRoot(effects),
 		!environment.production ? StoreDevtoolsModule.instrument() : []
 	],
-	providers: [],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: LoadingInterceptor,
+			multi: true
+		}
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable, map, mergeMap } from 'rxjs';
 import * as UsersActions from './users-actions';
-import { UsersService } from '../../../services/users.service';
-import { User, UserAPIResponse } from '../../../models/user.model';
+import { UsersService } from '../services/users.service';
+import { User, UserAPIResponse, UserResponse } from '../../../models/user.model';
 
 @Injectable()
 export class UsersEffects {
@@ -15,8 +15,20 @@ export class UsersEffects {
 			mergeMap((action) =>
 				this.usersService.getAllUsers(action.page).pipe(
 					map((userAPIResponse: UserAPIResponse) => {
-						console.log(userAPIResponse);
 						return UsersActions.SetUsers({ userAPIResponse });
+					})
+				)
+			)
+		)
+	);
+
+	getUserDetails$: Observable<any> = createEffect(() =>
+		this.actions$.pipe(
+			ofType(UsersActions.GetUserDetails),
+			mergeMap((action) =>
+				this.usersService.getUserDetails(action.userId).pipe(
+					map((user: UserResponse) => {
+						return UsersActions.SetUserDetails({ user });
 					})
 				)
 			)

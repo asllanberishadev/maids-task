@@ -4,3 +4,4 @@ import { UsersState } from '../models/users.model';
 export const selectState = createFeatureSelector<UsersState>('users');
 
 export const selectUsers = createSelector(selectState, (state: UsersState) => state.userAPIResponse);
+export const selectUserDetails = createSelector(selectState, (state: UsersState) => state.userDetails);

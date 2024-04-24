@@ -1,7 +1,8 @@
-import { UserAPIResponse } from '../../../models/user.model';
+import { User, UserAPIResponse, UserResponse } from '../../../models/user.model';
 
 export interface UsersState {
 	userAPIResponse: UserAPIResponse;
+	userDetails: UserResponse;
 }
 
 export interface PageEvent {

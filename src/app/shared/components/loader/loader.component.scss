@@ -1,0 +1,28 @@
+.cssload-container {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 9999;
+}
+
+.loader {
+	position: absolute;
+	top: 47%;
+	right: 47%;
+	width: 50px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: #fff;
+	-webkit-mask: radial-gradient(circle closest-side at 50% 40%, #0000 94%, #000);
+	transform-origin: 50% 40%;
+	animation: l25 1s infinite linear;
+}
+@keyframes l25 {
+	100% {
+		transform: rotate(1turn);
+	}
+}
