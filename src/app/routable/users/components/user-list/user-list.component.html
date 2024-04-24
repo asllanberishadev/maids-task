@@ -1,6 +1,7 @@
+<app-header (searchTerm)="searchBy($event)"></app-header>
 <div class="card container">
-    <p-table [value]="users" [tableStyle]="{'min-width': '60rem'}" [paginator]="true" [rows]="5"
-        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 10, 20]">
+    @if (users && users.length) {
+    <p-table [value]="users" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
                 Users
@@ -23,4 +24,13 @@
             </tr>
         </ng-template>
     </p-table>
+    } @else {
+        <span>No user found</span>
+    }
+    <div class="pagination">
+        <span style="margin-right: 50px;">{{ userAPIResponse?.total }} Total Users</span>
+        <span style="margin-right: 50px;">{{ userAPIResponse?.page }} of {{ userAPIResponse?.total_pages }} Pages</span>
+        <span style="margin-right: 20px; cursor: pointer;" (click)="changePage(currentPage-1)">Prev Page</span>
+        <span style="cursor: pointer;" (click)="changePage(currentPage+1)">Next Page</span>
+    </div>
 </div>

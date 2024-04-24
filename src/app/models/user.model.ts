@@ -1,3 +1,15 @@
+export interface UserAPIResponse {
+	page: number;
+	per_page: number;
+	total: number;
+	total_pages: number;
+	data: User[];
+	support: {
+		url: string;
+		text: string;
+	};
+}
+
 export interface User {
 	id: number;
 	email: string;
